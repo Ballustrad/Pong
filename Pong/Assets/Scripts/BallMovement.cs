@@ -35,4 +35,9 @@ public class BallMovement : MonoBehaviour
         rb.velocity = direction * ballSpeed;
     }
 
+    public void IncreaseHitCounter()
+    { if(hitCounter * extraSpeed < maxExtraSpeed)
+        { hitCounter++; 
+        }
+    }
 }
