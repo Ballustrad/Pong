@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BallBounce : MonoBehaviour
 {
+    public GameObject hitSFX;
+
   public BallMovement ballMovement;
   public ScoreManager scoreManager;
   private void Bounce(Collision2D collision)
@@ -48,6 +50,8 @@ public class BallBounce : MonoBehaviour
             StartCoroutine(ballMovement.Launch());
 
         }
+
+        Instantiate(hitSFX, transform.position, transform.rotation);
     }
 
 }
