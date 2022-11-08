@@ -4,11 +4,24 @@ using UnityEngine;
 
 public class BallBounce : MonoBehaviour
 {
-    public GameObject hitSFX;
+  public GameObject hitSFX;
+    public int RedBallTouch = 0;
+    public int GreenBallTouch = 0;
+    public SpriteRenderer spriteRenderer;
+    public Sprite GreenChargEmpty;
+    public Sprite RedChargEmpty;
+    public Sprite Charg1;
+    public Sprite Charg2;
+    public Sprite Charg3;
 
-  public BallMovement ballMovement;
+    public BallMovement ballMovement;
   public ScoreManager scoreManager;
-  private void Bounce(Collision2D collision)
+
+    public void Start()
+    {
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+    }
+    private void Bounce(Collision2D collision)
     {
         Vector3 ballPosition = transform.position;
         Vector3 racketPosition = collision.transform.position;
@@ -35,23 +48,63 @@ public class BallBounce : MonoBehaviour
         if(collision.gameObject.name == "Player 1" || collision.gameObject.name == "Player 2")
         { 
             Bounce(collision);
-        }
-
-        else if(collision.gameObject.name == "Right Border")
-        {
-            scoreManager.Player1Goal();
-            ballMovement.player1Start = false;
-            StartCoroutine(ballMovement.Launch());
-        }
-        else if(collision.gameObject.name == "Left Border")
-        {
-            scoreManager.Player2Goal();
-            ballMovement.player1Start = true;
-            StartCoroutine(ballMovement.Launch());
-
-        }
-
-        Instantiate(hitSFX, transform.position, transform.rotation);
+            if (collision.gameObject.name == "Player 1")
+            {
+                GreenBallTouch++;
+                if (GreenBallTouch == 1)
+                {
+                    GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg1;
+                    GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().color = Color.green;
+                }
+                else if (GreenBallTouch == 2)
+                {
+                    GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg2;
+                    GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().color = Color.green;
+                }
+                else if (GreenBallTouch == 3)
+                {
+                    GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg3;
+                    GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().color = Color.green;
+                }
+            }
+            else if (collision.gameObject.name == "Player 2")
+            {
+                RedBallTouch++;
+                if (RedBallTouch == 1)
+                {
+                    GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg1;
+                    GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().color = Color.red;
+                }
+                else if (RedBallTouch == 2)
+                {
+                    GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg2;
+                    GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().color = Color.red;
+                }
+                else if (RedBallTouch == 3)
+                {
+                    GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg3;
+                    GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().color = Color.red;
+                }
+            }
+        
     }
 
-}
+            else if(collision.gameObject.name == "Right Border")
+            {
+                scoreManager.Player1Goal();
+                ballMovement.player1Start = false;
+                StartCoroutine(ballMovement.Launch());
+            }
+            else if(collision.gameObject.name == "Left Border")
+            {
+                scoreManager.Player2Goal();
+                ballMovement.player1Start = true;
+                StartCoroutine(ballMovement.Launch());
+
+            }
+
+            Instantiate(hitSFX, transform.position, transform.rotation);
+        }
+
+    }
+
