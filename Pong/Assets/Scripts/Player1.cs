@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class Player1 : MonoBehaviour
 {
     public float racketSpeed;
-
+    
+    
     private Rigidbody2D rb;
     private Vector2 racketDirection;
     public BallBounce ballBounce;
@@ -16,9 +18,11 @@ public class Player1 : MonoBehaviour
     {
         if (collision.gameObject.name == "Ball")
         {
+           
+            
             if (ballBounce.player1PowerUpOn == true )
             {
-                ballMovement.ballSpeed = 45;
+                ballMovement.ballSpeed = 35;
                 Debug.Log("oui");
                 ballBounce.player1PowerUpOn = false;
             }

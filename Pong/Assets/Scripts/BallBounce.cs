@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -34,6 +35,11 @@ public class BallBounce : MonoBehaviour
     public bool player1Collision;
     public bool player2Collision;
     
+   
+   
+
+
+
 
 
     public BallMovement ballMovement;
@@ -43,6 +49,7 @@ public class BallBounce : MonoBehaviour
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
+    
     public void Bounce(Collision2D collision)
     {
         Vector3 ballPosition = transform.position;
@@ -72,6 +79,9 @@ public class BallBounce : MonoBehaviour
             Bounce(collision);
             if (collision.gameObject.name == "Player 1")
             {
+                GetComponent<ParticleSystem>().startColor = Color.green;
+                GetComponent<SpriteRenderer>().color = Color.green;
+                
                 player2Collision = false;
                 player1Collision = true;
                 
@@ -147,7 +157,12 @@ public class BallBounce : MonoBehaviour
 
             }
             else if (collision.gameObject.name == "Player 2")
+
             {
+                GetComponent<ParticleSystem>().startColor = Color.red;
+                GetComponent<SpriteRenderer>().color = Color.red;
+
+                
                 player1Collision = false;
                 player2Collision = true;
                 RedBallTouch++;
@@ -213,8 +228,7 @@ public class BallBounce : MonoBehaviour
                     barFullRed.text = "Press M";
                     
                 }
-               // if (player1PowerUpOn == true)
-                //{ player1PowerUpOn = false; }
+               
                 
             }
     }

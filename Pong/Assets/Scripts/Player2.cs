@@ -5,7 +5,8 @@ using UnityEngine;
 public class Player2 : MonoBehaviour
 {
     public float racketSpeed;
-
+   
+   
     private Rigidbody2D rb;
     private Vector2 racketDirection;
     public BallBounce ballBounce;
@@ -15,9 +16,10 @@ public class Player2 : MonoBehaviour
     {
         if (collision.gameObject.name == "Ball")
         {
+            
             if (ballBounce.player2PowerUpOn == true )
             {
-                ballMovement.ballSpeed = 45;
+                ballMovement.ballSpeed = 35;
                 Debug.Log("okay");
                 ballBounce.player2PowerUpOn = false;
             }

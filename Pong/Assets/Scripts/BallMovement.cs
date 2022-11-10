@@ -28,7 +28,9 @@ public class BallMovement : MonoBehaviour
     private void RestartBall()
     {
         rb.velocity = new Vector2(0,0);
-        transform.position = new Vector2(0, 0);
+        transform.position = new Vector2(0, -1);
+        GetComponent<ParticleSystem>().startColor = Color.white;
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     public IEnumerator Launch()
