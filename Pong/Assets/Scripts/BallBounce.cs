@@ -1,6 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BallBounce : MonoBehaviour
 {
@@ -13,6 +17,18 @@ public class BallBounce : MonoBehaviour
     public Sprite Charg1;
     public Sprite Charg2;
     public Sprite Charg3;
+    public Sprite Charg4;
+    public Sprite Charg5;  
+    public Sprite Charg6;  
+    public Sprite Charg7;
+    public Sprite Charg8;
+    public Sprite Charg9;
+    public Sprite Charg10;
+    public Sprite Charg11;
+    public Sprite Charg12;
+    public Text barFullGreen;
+    public Text barFullRed;
+
 
     public BallMovement ballMovement;
   public ScoreManager scoreManager;
@@ -51,20 +67,68 @@ public class BallBounce : MonoBehaviour
             if (collision.gameObject.name == "Player 1")
             {
                 GreenBallTouch++;
+                
                 if (GreenBallTouch == 1)
                 {
                     GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg1;
-                    GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().color = Color.green;
+
                 }
                 else if (GreenBallTouch == 2)
                 {
                     GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg2;
-                    GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().color = Color.green;
+
                 }
                 else if (GreenBallTouch == 3)
                 {
                     GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg3;
+
+                }
+                else if (GreenBallTouch == 4)
+                {
+                    GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg4;
+
+                }
+                else if (GreenBallTouch == 5)
+                {
+                    GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg5;
+
+                }
+                else if (GreenBallTouch == 6)
+                {
+                    GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg6;
+
+                }
+                else if (GreenBallTouch == 7)
+                {
+                    GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg7;
+
+                }
+                else if (GreenBallTouch == 8)
+                {
+                    GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg8;
+
+                }
+                else if (GreenBallTouch == 9)
+                {
+                    GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg9;
+
+                }
+                else if (GreenBallTouch == 10)
+                {
+                    GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg10;
+
+                }
+                else if (GreenBallTouch == 11)
+                {
+                    GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg11;
+
+                }
+                else if (GreenBallTouch == 12)
+                {
+                    GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg12;
                     GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().color = Color.green;
+                    barFullGreen.text = "Press E";
+                    
                 }
             }
             else if (collision.gameObject.name == "Player 2")
@@ -73,20 +137,67 @@ public class BallBounce : MonoBehaviour
                 if (RedBallTouch == 1)
                 {
                     GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg1;
-                    GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().color = Color.red;
+
                 }
                 else if (RedBallTouch == 2)
                 {
                     GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg2;
-                    GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().color = Color.red;
+
                 }
                 else if (RedBallTouch == 3)
                 {
                     GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg3;
-                    GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().color = Color.red;
+
                 }
+                else if (RedBallTouch == 4)
+                {
+                    GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg4;
+
+                }
+                else if (RedBallTouch == 5)
+                {
+                    GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg5;
+
+                }
+                else if (RedBallTouch == 6)
+                {
+                    GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg6;
+
+                }
+                else if (RedBallTouch == 7)
+                {
+                    GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg7;
+
+                }
+                else if (RedBallTouch == 8)
+                {
+                    GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg8;
+
+                }
+                else if (RedBallTouch == 9)
+                {
+                    GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg9;
+
+                }
+                else if (RedBallTouch == 10)
+                {
+                    GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg10;
+
+                }
+                else if (RedBallTouch == 11)
+                {
+                    GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg11;
+
+                }
+                else if (RedBallTouch == 12)
+                {
+                    GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg12;
+                    GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().color = Color.red;
+                    barFullRed.text = "Press M";
+                    
+                }
+                
             }
-        
     }
 
             else if(collision.gameObject.name == "Right Border")
@@ -105,6 +216,30 @@ public class BallBounce : MonoBehaviour
 
             Instantiate(hitSFX, transform.position, transform.rotation);
         }
-
+    public void Update()
+    {
+        if (GreenBallTouch >= 12 )
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            { 
+                GreenBallTouch = 0;
+                GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = GreenChargEmpty;
+                GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().color = Color.white;
+                barFullGreen.text = "";
+            }
+            
+        }
+        if ( RedBallTouch >= 12)
+        {
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                RedBallTouch = 0;
+                GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().sprite = RedChargEmpty;
+                GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().color = Color.white;
+                barFullRed.text = "";
+            }
+        }
     }
+
+}
 
