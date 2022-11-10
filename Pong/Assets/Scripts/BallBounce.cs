@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class BallBounce : MonoBehaviour
 {
@@ -28,6 +29,11 @@ public class BallBounce : MonoBehaviour
     public Sprite Charg12;
     public Text barFullGreen;
     public Text barFullRed;
+    public bool player1PowerUpOn;
+    public bool player2PowerUpOn;
+    public bool player1Collision;
+    public bool player2Collision;
+    
 
 
     public BallMovement ballMovement;
@@ -37,7 +43,7 @@ public class BallBounce : MonoBehaviour
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
-    private void Bounce(Collision2D collision)
+    public void Bounce(Collision2D collision)
     {
         Vector3 ballPosition = transform.position;
         Vector3 racketPosition = collision.transform.position;
@@ -59,18 +65,22 @@ public class BallBounce : MonoBehaviour
         ballMovement.IncreaseHitCounter();
         ballMovement.MoveBall(new Vector2(positionX, positionY));
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.name == "Player 1" || collision.gameObject.name == "Player 2")
         { 
             Bounce(collision);
             if (collision.gameObject.name == "Player 1")
             {
+                player2Collision = false;
+                player1Collision = true;
+                
                 GreenBallTouch++;
                 
                 if (GreenBallTouch == 1)
                 {
                     GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg1;
+                    
 
                 }
                 else if (GreenBallTouch == 2)
@@ -130,9 +140,16 @@ public class BallBounce : MonoBehaviour
                     barFullGreen.text = "Press E";
                     
                 }
+                if (player2PowerUpOn == true)
+                {
+                    player2PowerUpOn = false;
+                }
+
             }
             else if (collision.gameObject.name == "Player 2")
             {
+                player1Collision = false;
+                player2Collision = true;
                 RedBallTouch++;
                 if (RedBallTouch == 1)
                 {
@@ -196,6 +213,8 @@ public class BallBounce : MonoBehaviour
                     barFullRed.text = "Press M";
                     
                 }
+               // if (player1PowerUpOn == true)
+                //{ player1PowerUpOn = false; }
                 
             }
     }
@@ -226,6 +245,8 @@ public class BallBounce : MonoBehaviour
                 GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = GreenChargEmpty;
                 GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().color = Color.white;
                 barFullGreen.text = "";
+                player1PowerUpOn = true;
+                
             }
             
         }
@@ -237,9 +258,10 @@ public class BallBounce : MonoBehaviour
                 GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().sprite = RedChargEmpty;
                 GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().color = Color.white;
                 barFullRed.text = "";
+                player2PowerUpOn = true;
             }
         }
     }
-
+    
 }
 

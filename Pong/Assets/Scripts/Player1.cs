@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Player1 : MonoBehaviour
@@ -8,6 +9,22 @@ public class Player1 : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 racketDirection;
+    public BallBounce ballBounce;
+    public BallMovement ballMovement;
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Ball")
+        {
+            if (ballBounce.player1PowerUpOn == true )
+            {
+                ballMovement.ballSpeed = 45;
+                Debug.Log("oui");
+                ballBounce.player1PowerUpOn = false;
+            }
+
+        }
+    }
 
     void Start()
     {

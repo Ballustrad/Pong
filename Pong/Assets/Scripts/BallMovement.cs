@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BallMovement : MonoBehaviour
@@ -7,11 +8,12 @@ public class BallMovement : MonoBehaviour
     public float startSpeed;
     public float extraSpeed;
     public float maxExtraSpeed;
-   
-
+    public float ballSpeed;
+    
     public bool player1Start = true;
 
-    private int hitCounter = 0;
+    public int hitCounter = 0;
+    public BallBounce ballBounce ;
     
     
 
@@ -48,17 +50,28 @@ public class BallMovement : MonoBehaviour
     public void MoveBall(Vector2 direction)
     {
         direction = direction.normalized;
-
-        float ballSpeed = startSpeed + hitCounter * extraSpeed;
-
         rb.velocity = direction * ballSpeed;
     }
 
+    
+    
     public void IncreaseHitCounter()
     { if(hitCounter * extraSpeed < maxExtraSpeed)
         { hitCounter++; 
         }
     }
+    public void Update()
+    {
+        
 
+        if (ballBounce.player1PowerUpOn == false && ballBounce.player2PowerUpOn == false)
+        {
+            ballSpeed = startSpeed + hitCounter * extraSpeed;
+        }
+
+
+    }
     
+
+
 }
