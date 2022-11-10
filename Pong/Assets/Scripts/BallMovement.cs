@@ -7,10 +7,13 @@ public class BallMovement : MonoBehaviour
     public float startSpeed;
     public float extraSpeed;
     public float maxExtraSpeed;
+   
 
     public bool player1Start = true;
 
     private int hitCounter = 0;
+    
+    
 
     private Rigidbody2D rb;
     void Start()
@@ -56,4 +59,6 @@ public class BallMovement : MonoBehaviour
         { hitCounter++; 
         }
     }
+
+    
 }
