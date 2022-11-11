@@ -34,8 +34,7 @@ public class BallBounce : MonoBehaviour
     public bool player2PowerUpOn;
     public bool player1Collision;
     public bool player2Collision;
-    public ParticleSystem P1;
-    public ParticleSystem P2;
+  
     
     
    
