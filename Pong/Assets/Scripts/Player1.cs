@@ -24,7 +24,7 @@ public class Player1 : MonoBehaviour
             if (ballBounce.player1PowerUpOn == true )
             {
                 ballMovement.ballSpeed = 35;
-                Debug.Log("oui");
+                
                 ballBounce.player1PowerUpOn = false;
             }
 

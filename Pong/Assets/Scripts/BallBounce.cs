@@ -14,6 +14,8 @@ public class BallBounce : MonoBehaviour
     public int RedBallTouch = 0;
     public int GreenBallTouch = 0;
     public SpriteRenderer spriteRenderer;
+   // public SpriteRenderer barfull1;
+    //public SpriteRenderer barfull2;
     public Sprite GreenChargEmpty;
     public Sprite RedChargEmpty;
     public Sprite Charg1;
@@ -34,6 +36,14 @@ public class BallBounce : MonoBehaviour
     public bool player2PowerUpOn;
     public bool player1Collision;
     public bool player2Collision;
+    public GameObject Barfull1;
+    public GameObject Barfull2;
+    public GameObject Barempty1;
+    public GameObject Barempty2;
+    public CameraShake cameraShake;
+    
+
+    
   
     
     
@@ -50,6 +60,7 @@ public class BallBounce : MonoBehaviour
     public void Start()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        
     }
     
     public void Bounce(Collision2D collision)
@@ -76,13 +87,21 @@ public class BallBounce : MonoBehaviour
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.name == "Player 1" || collision.gameObject.name == "Player 2")
+        if (collision.gameObject.name == "Top Border" || collision.gameObject.name == "Bottom Border")
+        {
+
+            StartCoroutine(cameraShake.Shake(.15f, .1f));
+        }
+        if (collision.gameObject.name == "Player 1" || collision.gameObject.name == "Player 2")
         { 
             Bounce(collision);
+            StartCoroutine(cameraShake.Shake(.15f, .1f));
+            
+
             if (collision.gameObject.name == "Player 1")
             {
-                GetComponent<ParticleSystem>().startColor = Color.green;
-                GetComponent<SpriteRenderer>().color = Color.green;
+                
+                
                 TrailRenderer myTrailRenderer = GetComponent<TrailRenderer>();
                 myTrailRenderer.material.color = Color.green;
 
@@ -153,19 +172,17 @@ public class BallBounce : MonoBehaviour
                     GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg12;
                     GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().color = Color.green;
                     barFullGreen.text = "Press E";
-                    
+                    GameObject.Find("GreenChargEmpty").SetActive(false);
+                    Barfull1.SetActive(true);
                 }
-                if (player2PowerUpOn == true)
-                {
-                    player2PowerUpOn = false;
-                }
+               
 
             }
             else if (collision.gameObject.name == "Player 2")
 
             {
-                GetComponent<ParticleSystem>().startColor = Color.red;
-                GetComponent<SpriteRenderer>().color = Color.red;
+                
+                
                 TrailRenderer myTrailRenderer = GetComponent<TrailRenderer>();
                 myTrailRenderer.material.color = Color.red;
 
@@ -233,7 +250,9 @@ public class BallBounce : MonoBehaviour
                     GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().sprite = Charg12;
                     GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().color = Color.red;
                     barFullRed.text = "Press M";
-                    
+                    GameObject.Find("RedChargEmpty").SetActive(false);
+                    Barfull2.SetActive(true);
+
                 }
                
                 
@@ -256,17 +275,22 @@ public class BallBounce : MonoBehaviour
 
             Instantiate(hitSFX, transform.position, transform.rotation);
         }
+
+   
     public void Update()
     {
         if (GreenBallTouch >= 12 )
         {
             if (Input.GetKeyDown(KeyCode.E))
-            { 
+            {
+                player1PowerUpOn = true;
+                Barempty1.SetActive(true);
+                Barfull1.SetActive(false);
                 GreenBallTouch = 0;
                 GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().sprite = GreenChargEmpty;
                 GameObject.Find("GreenChargEmpty").GetComponent<SpriteRenderer>().color = Color.white;
                 barFullGreen.text = "";
-                player1PowerUpOn = true;
+                
                 
             }
             
@@ -276,11 +300,14 @@ public class BallBounce : MonoBehaviour
             
             if (Input.GetKeyDown(KeyCode.M))
             {
+                player2PowerUpOn = true;
+                Barempty2.SetActive(true);
+                Barfull2.SetActive(false);
                 RedBallTouch = 0;
                 GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().sprite = RedChargEmpty;
                 GameObject.Find("RedChargEmpty").GetComponent<SpriteRenderer>().color = Color.white;
                 barFullRed.text = "";
-                player2PowerUpOn = true;
+                
             }
         }
     }

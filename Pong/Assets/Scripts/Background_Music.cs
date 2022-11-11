@@ -5,13 +5,12 @@ using UnityEngine;
 public class Background_Music : MonoBehaviour
 {
     private static Background_Music backgroundMusic;
-
-    private void Awake()
+        private void Awake()
     {
         if(backgroundMusic == null)
         {
             backgroundMusic = this;
-            DontDestroyOnLoad(backgroundMusic);
+            
         }
         else
         {
