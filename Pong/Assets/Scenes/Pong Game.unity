@@ -7415,7 +7415,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startSpeed: 7
   extraSpeed: 2
-  maxExtraSpeed: 13
+  maxExtraSpeed: 11
   ballSpeed: 0
   player1Start: 1
   hitCounter: 0
@@ -7432,7 +7432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d00c83aa3969948acb639e5e5fe51c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitSFX: {fileID: 8390187691351696235, guid: 7752594deef75414785bc63cbd35748c, type: 3}
+  hitSFX: {fileID: 4021103657954561961, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
   RedBallTouch: 0
   GreenBallTouch: 0
   spriteRenderer: {fileID: 757060019}
