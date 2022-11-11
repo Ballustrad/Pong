@@ -13,6 +13,7 @@ public class Player1 : MonoBehaviour
     private Vector2 racketDirection;
     public BallBounce ballBounce;
     public BallMovement ballMovement;
+    
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
