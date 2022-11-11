@@ -31,6 +31,8 @@ public class BallMovement : MonoBehaviour
         transform.position = new Vector2(0, -1);
         GetComponent<ParticleSystem>().startColor = Color.white;
         GetComponent<SpriteRenderer>().color = Color.white;
+        TrailRenderer myTrailRenderer = GetComponent<TrailRenderer>();
+        myTrailRenderer.material.color = Color.blue;
     }
 
     public IEnumerator Launch()

@@ -35,6 +35,7 @@ public class BallBounce : MonoBehaviour
     public bool player1Collision;
     public bool player2Collision;
     
+    
    
    
 
@@ -81,7 +82,10 @@ public class BallBounce : MonoBehaviour
             {
                 GetComponent<ParticleSystem>().startColor = Color.green;
                 GetComponent<SpriteRenderer>().color = Color.green;
-                
+                TrailRenderer myTrailRenderer = GetComponent<TrailRenderer>();
+                myTrailRenderer.material.color = Color.green;
+
+
                 player2Collision = false;
                 player1Collision = true;
                 
@@ -161,8 +165,10 @@ public class BallBounce : MonoBehaviour
             {
                 GetComponent<ParticleSystem>().startColor = Color.red;
                 GetComponent<SpriteRenderer>().color = Color.red;
+                TrailRenderer myTrailRenderer = GetComponent<TrailRenderer>();
+                myTrailRenderer.material.color = Color.red;
 
-                
+
                 player1Collision = false;
                 player2Collision = true;
                 RedBallTouch++;
