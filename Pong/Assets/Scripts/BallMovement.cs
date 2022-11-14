@@ -9,6 +9,9 @@ public class BallMovement : MonoBehaviour
     public float extraSpeed;
     public float maxExtraSpeed;
     public float ballSpeed;
+    public float boostSpeed;
+    public Player player1;
+    public Player player2;
     
     public bool player1Start = true;
 
@@ -51,10 +54,21 @@ public class BallMovement : MonoBehaviour
         }
     }
 
-    public void MoveBall(Vector2 direction)
+    public void MoveBall(Vector2 direction, Player current = null)
     {
         direction = direction.normalized;
-        rb.velocity = direction * ballSpeed;
+        if(current == player1 && player1.powerUpOn)
+        {
+            rb.velocity = direction * boostSpeed * Time.fixedDeltaTime;
+            player1.powerUpOn = false;
+        }
+        else if(current == player2 && player2.powerUpOn)
+        {
+            rb.velocity = direction * boostSpeed * Time.fixedDeltaTime;
+            player2.powerUpOn = false;
+        }
+        else
+            rb.velocity = direction * ballSpeed * Time.fixedDeltaTime;
     }
 
     
@@ -75,7 +89,6 @@ public class BallMovement : MonoBehaviour
 
 
     }
-    
 
-
+   
 }

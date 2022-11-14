@@ -551,10 +551,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 109333684}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c53afc44093811441a3d81da07acf2a3, type: 3}
+  m_Script: {fileID: 11500000, guid: b7375404fc4ac87408c9838185afd33c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   racketSpeed: 15
+  axisName: Vertical2
+  powerUpOn: 0
   ballBounce: {fileID: 1762194318}
   ballMovement: {fileID: 1762194317}
 --- !u!1 &140042547
@@ -1913,10 +1915,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1382008154}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 365a41d9d63a2e145ba09302250c9a00, type: 3}
+  m_Script: {fileID: 11500000, guid: b7375404fc4ac87408c9838185afd33c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   racketSpeed: 15
+  axisName: Vertical
+  powerUpOn: 0
   ballBounce: {fileID: 1762194318}
   ballMovement: {fileID: 1762194317}
 --- !u!1 &1476208233
@@ -7362,7 +7366,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1762194315
 Rigidbody2D:
@@ -7413,10 +7417,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4047223525d38ec489aff71c895d18c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSpeed: 7
-  extraSpeed: 2
-  maxExtraSpeed: 11
+  startSpeed: 350
+  extraSpeed: 100
+  maxExtraSpeed: 550
   ballSpeed: 0
+  boostSpeed: 2500
+  player1: {fileID: 1382008159}
+  player2: {fileID: 109333689}
   player1Start: 1
   hitCounter: 0
   ballBounce: {fileID: 1762194318}
@@ -7461,6 +7468,8 @@ MonoBehaviour:
   Barempty1: {fileID: 757060018}
   Barempty2: {fileID: 35568389}
   cameraShake: {fileID: 1476208238}
+  player1: {fileID: 1382008159}
+  player2: {fileID: 109333689}
   ballMovement: {fileID: 1762194317}
   scoreManager: {fileID: 1893610919}
 --- !u!96 &1762194319
@@ -12576,7 +12585,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1893610917}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12587,7 +12596,7 @@ Transform:
   - {fileID: 1847619879}
   - {fileID: 1248163123}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1893610919
 MonoBehaviour:

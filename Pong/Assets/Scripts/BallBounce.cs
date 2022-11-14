@@ -14,8 +14,7 @@ public class BallBounce : MonoBehaviour
     public int RedBallTouch = 0;
     public int GreenBallTouch = 0;
     public SpriteRenderer spriteRenderer;
-   // public SpriteRenderer barfull1;
-    //public SpriteRenderer barfull2;
+   
     public Sprite GreenChargEmpty;
     public Sprite RedChargEmpty;
     public Sprite Charg1;
@@ -41,6 +40,8 @@ public class BallBounce : MonoBehaviour
     public GameObject Barempty1;
     public GameObject Barempty2;
     public CameraShake cameraShake;
+    public Player player1;
+    public Player player2;
     
 
     
@@ -68,22 +69,26 @@ public class BallBounce : MonoBehaviour
         Vector3 ballPosition = transform.position;
         Vector3 racketPosition = collision.transform.position;
         float racketHeight = collision.collider.bounds.size.y;
+        Player current = null;
 
-        float positionX;
+        float positionX = 0;
         if(collision.gameObject.name == "Player 1")
         {
             positionX = 1;
+            current = player1;
         }
 
-        else
+        else if (collision.gameObject.name == "Player 2")
         {
             positionX = -1;
+            current = player2;
+
         }
 
         float positionY = (ballPosition.y - racketPosition.y) / racketHeight;
 
         ballMovement.IncreaseHitCounter();
-        ballMovement.MoveBall(new Vector2(positionX, positionY));
+        ballMovement.MoveBall(new Vector2(positionX, positionY), current);
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
@@ -283,7 +288,7 @@ public class BallBounce : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                player1PowerUpOn = true;
+                player1.powerUpOn = true;
                 Barempty1.SetActive(true);
                 Barfull1.SetActive(false);
                 GreenBallTouch = 0;
@@ -300,7 +305,7 @@ public class BallBounce : MonoBehaviour
             
             if (Input.GetKeyDown(KeyCode.M))
             {
-                player2PowerUpOn = true;
+                player2.powerUpOn = true;
                 Barempty2.SetActive(true);
                 Barfull2.SetActive(false);
                 RedBallTouch = 0;
