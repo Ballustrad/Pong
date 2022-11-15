@@ -53,16 +53,7 @@ public class ChangeScene : MonoBehaviour
             MenuOptions.SetActive(true);
             MenuCommands.SetActive(false);
         }
-        if (_String == "Screenshake Button")
-        {
-            MenuOptions.SetActive(false);
-            MenuScreenshake.SetActive(true);
-        }
-        if (_String == "Return From Screenshake Button")
-        {
-            MenuOptions.SetActive(true);
-            MenuScreenshake.SetActive(false);
-        }
+        
     }
 }
 
