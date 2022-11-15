@@ -10,6 +10,8 @@ public class ChangeScene : MonoBehaviour
     public GameObject MainMenu;
     public GameObject MenuOptions;
     public GameObject MenuCredits;
+    public GameObject MenuCommands;
+    public GameObject MenuScreenshake;
     public void MoveToScene(int sceneID)
     {
         SceneManager.LoadScene(sceneID);
@@ -40,6 +42,26 @@ public class ChangeScene : MonoBehaviour
         {
             MainMenu.SetActive(true);
             MenuOptions.SetActive(false);
+        }
+        if (_String == "Commands Button")
+        {
+            MenuOptions.SetActive(false);
+            MenuCommands.SetActive(true);
+        }
+        if (_String == "Return From Commands Button")
+        {
+            MenuOptions.SetActive(true);
+            MenuCommands.SetActive(false);
+        }
+        if (_String == "Screenshake Button")
+        {
+            MenuOptions.SetActive(false);
+            MenuScreenshake.SetActive(true);
+        }
+        if (_String == "Return From Screenshake Button")
+        {
+            MenuOptions.SetActive(true);
+            MenuScreenshake.SetActive(false);
         }
     }
 }
